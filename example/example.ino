@@ -1,7 +1,7 @@
 #include <UM7.h>
 
-//Connect the RX pin on the UM7 to TX1 (pin 18) on the DUE
-//Connect the TX pin on the UM7 to RX1 (pin 19) on the DUE
+//Connect the RX pin on the UM7 to TX2 (pin 16) on the DUE
+//Connect the TX pin on the UM7 to RX2 (pin 17) on the DUE
 
 UM7 imu;
 
@@ -11,7 +11,7 @@ UM7 imu;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  Serial1.begin(115200);
+  Serial2.begin(115200);  //I used TX2, RX2 since TX1 and RX1 do not work well
   #ifdef Quaternion
     Serial2.write('s');
     Serial2.write('n');
