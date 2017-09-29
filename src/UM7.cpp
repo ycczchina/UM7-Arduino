@@ -1,6 +1,7 @@
 #include "UM7.h"
 
-#define DREG_EULER_PHI_THETA 0x70	// Packet address sent from the UM7 that contains roll,pitch,yaw and rates.
+#define DREG_QUAT_AB		 0x6D
+#define DREG_EULER_PHI_THETA 	 0x70	// Packet address sent from the UM7 that contains roll,pitch,yaw and rates.
 
 UM7::UM7() : state(STATE_ZERO){}	// Default constructor
 
@@ -103,6 +104,23 @@ void UM7::save(){
 			roll |= data[1];
 			pitch = data[2] << 8;
 			pitch |= data[3];
+		}
+		//break;
+	case DREG_QUAT_AB :
+		if(packet_is_batch){
+			QW = data[0] << 8;
+			QW |= data[1];
+			QX = data[2] << 8;
+			QX |= data[3];
+			QY = data[4] << 8;
+			QY |= data[5];
+			QZ = data[6] << 8;
+			QZ |= data[7];
+		}else{
+			QW = data[0] << 8;
+			QW |= data[1];
+			QX = data[2] << 8;
+			QX |= data[3];
 		}
 		break;
 	}
