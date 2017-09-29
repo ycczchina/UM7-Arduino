@@ -20,17 +20,6 @@ void setup() {
     Serial2.write();
     Serial2.write();
   #endif
-  byte tx_data[20];
-  tx_data[0] = 's';
-  tx_data[1] = 'n';
-  tx_data[2] = 'p';
-  tx_data[3] = 0x80;// Packet Type byte
-  tx_data[4] = 0x08;// Address of GET_FW_REVISION register
-  tx_data[5] = 0x01;// Checksum high byte
-  tx_data[6] = 0xFB;// Checksum low byte
-  for(int i = 0; i < 7; i++){
-    Serial2.write(tx_data[i]);
-  }
 }
 
 void loop() {
